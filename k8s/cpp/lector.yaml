@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: etl-cpp-lector
+  namespace: etl-cpp
+spec:
+  securityContext:
+    fsGroup: 1000
+  restartPolicy: Never
+  containers:
+    - name: lector
+      image: etl-distribuido-cpp:local
+      imagePullPolicy: Never
+      args: ["--hold", "3600"]
+      resources:
+        requests: {cpu: 10m, memory: 16Mi}
+        limits: {cpu: 100m, memory: 64Mi}
+      volumeMounts:
+        - {name: resultados, mountPath: /resultados}
+  volumes:
+    - name: resultados
+      persistentVolumeClaim:
+        claimName: resultados-cpp

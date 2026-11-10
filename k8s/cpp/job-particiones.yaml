@@ -1,0 +1,51 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: etl-cpp-particiones
+  namespace: etl-cpp
+  labels:
+    app: etl-cpp
+spec:
+  completions: 2
+  parallelism: 2
+  completionMode: Indexed
+  backoffLimit: 0
+  activeDeadlineSeconds: 180
+  template:
+    spec:
+      securityContext:
+        fsGroup: 1000
+      restartPolicy: Never
+      containers:
+        - name: etl
+          image: etl-distribuido-cpp:local
+          imagePullPolicy: Never
+          args:
+            - --input
+            - /datos/COVID19MEXICO.csv
+            - --output
+            - /resultados/parte_$(INDICE).csv
+            - --audit
+            - /resultados/parte_$(INDICE).json
+            - --mode
+            - omp
+            - --threads
+            - "2"
+            - --shard-index
+            - $(INDICE)
+            - --shard-count
+            - "2"
+          env:
+            - name: INDICE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.annotations['batch.kubernetes.io/job-completion-index']
+          resources:
+            requests: {cpu: "1", memory: 128Mi}
+            limits: {cpu: "2", memory: 512Mi}
+          volumeMounts:
+            - {name: resultados, mountPath: /resultados}
+      volumes:
+        - name: resultados
+          persistentVolumeClaim:
+            claimName: resultados-cpp

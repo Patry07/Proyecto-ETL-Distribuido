@@ -1,0 +1,20 @@
+{
+  "implementacion": "C++17/omp",
+  "filas_dataset": 108733,
+  "filas_entrada": 54615,
+  "duplicados_exactos_eliminados": 0,
+  "duplicados_id_eliminados": 0,
+  "edades_invalidas_convertidas_a_nulo": 0,
+  "filas_salida": 54615,
+  "hilos_solicitados": 2,
+  "hilos_utilizados": 2,
+  "particion": 1,
+  "particiones": 2,
+  "lectura_segundos": 0.854309098,
+  "preparacion_global_segundos": 0.12112046,
+  "transformacion_filas_segundos": 0.020207877,
+  "etl_segundos": 0.141328337,
+  "escritura_segundos": 0.076044599,
+  "total_segundos": 1.071682622,
+  "openmp_version": 201511
+}

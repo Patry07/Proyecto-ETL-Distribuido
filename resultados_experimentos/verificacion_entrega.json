@@ -1,0 +1,11 @@
+{
+  "pruebas": [
+    "test_csv_limpieza_y_equivalencia_openmp",
+    "test_particiones_con_ids_repetidos_y_union_ordenada",
+    "test_rechaza_csv_malformado_y_parametros_invalidos"
+  ],
+  "resultado": "3 tests, OK",
+  "binario_probado": "C++ compilado con GCC 13.3.0 y -O3 -fopenmp, extraído de la imagen ETL",
+  "dataset_real": "48 ejecuciones: 8 calentamientos y 40 medidas; todas validadas",
+  "notebooks": "4 ejecutados con kernels Jupyter en dev-workbench y exportados a HTML sin errores de celda"
+}

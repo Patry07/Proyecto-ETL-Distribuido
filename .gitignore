@@ -13,3 +13,12 @@ datos/
 resultados/
 resultados_kubernetes/
 kubectl/
+
+# Ejecutables y entornos de la integración C++
+bin/
+*.tar
+resultados_nueva_corrida/
+
+# CSV grandes: se conservan métricas, auditorías, notebooks y figuras.
+resultados_experimentos/ejecuciones/**/*.csv
+resultados_experimentos/ejecuciones/**/*.csv.indices

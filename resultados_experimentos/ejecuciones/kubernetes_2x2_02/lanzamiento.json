@@ -1,0 +1,15 @@
+{
+  "configuracion": "kubernetes_2x2",
+  "modo": "k8s",
+  "hilos": 4,
+  "repeticion": 2,
+  "pared_segundos": 6.3493305200000005,
+  "etapas_pared_segundos": [
+    0.035976782,
+    2.878852831,
+    0.031712412,
+    3.4027884950000002
+  ],
+  "semilla_orden": 20261112,
+  "cronometro": "Tiempo de pared del proceso CLI; Kubernetes suma apply/wait de trabajadores y unión, sin pausas entre llamadas."
+}

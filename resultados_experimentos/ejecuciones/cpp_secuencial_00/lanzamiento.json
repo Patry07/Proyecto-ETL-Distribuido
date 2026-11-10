@@ -1,0 +1,10 @@
+{
+  "configuracion": "cpp_secuencial",
+  "modo": "seq",
+  "hilos": 1,
+  "repeticion": 0,
+  "pared_segundos": 0.990418448,
+  "etapas_pared_segundos": [],
+  "semilla_orden": 20261110,
+  "cronometro": "Tiempo de pared del proceso CLI; Kubernetes suma apply/wait de trabajadores y unión, sin pausas entre llamadas."
+}

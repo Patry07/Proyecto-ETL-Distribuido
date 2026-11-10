@@ -1,0 +1,26 @@
+name: etl-cpp
+x-worker: &worker
+  image: etl-distribuido-cpp:local
+  network_mode: none
+  user: "${ETL_UID:-1000}:${ETL_GID:-1000}"
+  cpus: 2
+  mem_limit: 512m
+  volumes:
+    - ${ETL_RESULTS_DIR:-./resultados_docker_cpp}:/resultados
+
+services:
+  parte0:
+    <<: *worker
+    command: ["--input", "/datos/COVID19MEXICO.csv", "--output", "/resultados/parte_0.csv", "--audit", "/resultados/parte_0.json", "--mode", "omp", "--threads", "2", "--shard-index", "0", "--shard-count", "2"]
+  parte1:
+    <<: *worker
+    command: ["--input", "/datos/COVID19MEXICO.csv", "--output", "/resultados/parte_1.csv", "--audit", "/resultados/parte_1.json", "--mode", "omp", "--threads", "2", "--shard-index", "1", "--shard-count", "2"]
+  reunir:
+    <<: *worker
+    cpus: 1
+    depends_on:
+      parte0:
+        condition: service_completed_successfully
+      parte1:
+        condition: service_completed_successfully
+    command: ["--merge-dir", "/resultados", "--shard-count", "2", "--output", "/resultados/COVID19MEXICO_limpio.csv", "--audit", "/resultados/union.json"]

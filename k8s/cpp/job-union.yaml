@@ -1,0 +1,29 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: etl-cpp-union
+  namespace: etl-cpp
+  labels:
+    app: etl-cpp
+spec:
+  backoffLimit: 0
+  activeDeadlineSeconds: 120
+  template:
+    spec:
+      securityContext:
+        fsGroup: 1000
+      restartPolicy: Never
+      containers:
+        - name: reunir
+          image: etl-distribuido-cpp:local
+          imagePullPolicy: Never
+          args: ["--merge-dir", "/resultados", "--shard-count", "2", "--output", "/resultados/COVID19MEXICO_limpio.csv", "--audit", "/resultados/union.json"]
+          resources:
+            requests: {cpu: "500m", memory: 128Mi}
+            limits: {cpu: "1", memory: 512Mi}
+          volumeMounts:
+            - {name: resultados, mountPath: /resultados}
+      volumes:
+        - name: resultados
+          persistentVolumeClaim:
+            claimName: resultados-cpp
