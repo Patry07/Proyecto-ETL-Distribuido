@@ -1,0 +1,20 @@
+{
+  "implementacion": "C++17/seq",
+  "filas_dataset": 108733,
+  "filas_entrada": 108733,
+  "duplicados_exactos_eliminados": 0,
+  "duplicados_id_eliminados": 0,
+  "edades_invalidas_convertidas_a_nulo": 0,
+  "filas_salida": 108733,
+  "hilos_solicitados": 1,
+  "hilos_utilizados": 1,
+  "particion": 0,
+  "particiones": 1,
+  "lectura_segundos": 0.704176835,
+  "preparacion_global_segundos": 0.141377262,
+  "transformacion_filas_segundos": 0.049538187,
+  "etl_segundos": 0.190915449,
+  "escritura_segundos": 0.118432828,
+  "total_segundos": 1.013525475,
+  "openmp_version": 201511
+}

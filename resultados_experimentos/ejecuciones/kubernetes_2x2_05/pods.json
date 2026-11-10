@@ -1,0 +1,1080 @@
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "annotations": {
+                    "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"v1\",\"kind\":\"Pod\",\"metadata\":{\"annotations\":{},\"name\":\"etl-cpp-lector\",\"namespace\":\"etl-cpp\"},\"spec\":{\"containers\":[{\"args\":[\"--hold\",\"3600\"],\"image\":\"etl-distribuido-cpp:local\",\"imagePullPolicy\":\"Never\",\"name\":\"lector\",\"resources\":{\"limits\":{\"cpu\":\"100m\",\"memory\":\"64Mi\"},\"requests\":{\"cpu\":\"10m\",\"memory\":\"16Mi\"}},\"volumeMounts\":[{\"mountPath\":\"/resultados\",\"name\":\"resultados\"}]}],\"restartPolicy\":\"Never\",\"securityContext\":{\"fsGroup\":1000},\"volumes\":[{\"name\":\"resultados\",\"persistentVolumeClaim\":{\"claimName\":\"resultados-cpp\"}}]}}\n"
+                },
+                "creationTimestamp": "2026-11-10T15:50:01Z",
+                "generation": 1,
+                "name": "etl-cpp-lector",
+                "namespace": "etl-cpp",
+                "resourceVersion": "555",
+                "uid": "8aaac680-2911-4ce0-86e6-3f318c35160b"
+            },
+            "spec": {
+                "containers": [
+                    {
+                        "args": [
+                            "--hold",
+                            "3600"
+                        ],
+                        "image": "etl-distribuido-cpp:local",
+                        "imagePullPolicy": "Never",
+                        "name": "lector",
+                        "resources": {
+                            "limits": {
+                                "cpu": "100m",
+                                "memory": "64Mi"
+                            },
+                            "requests": {
+                                "cpu": "10m",
+                                "memory": "16Mi"
+                            }
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/resultados",
+                                "name": "resultados"
+                            },
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-z795g",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": true,
+                "nodeName": "fc1c7294426e",
+                "preemptionPolicy": "PreemptLowerPriority",
+                "priority": 0,
+                "restartPolicy": "Never",
+                "schedulerName": "default-scheduler",
+                "securityContext": {
+                    "fsGroup": 1000
+                },
+                "serviceAccount": "default",
+                "serviceAccountName": "default",
+                "terminationGracePeriodSeconds": 30,
+                "tolerations": [
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/not-ready",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/unreachable",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    }
+                ],
+                "volumes": [
+                    {
+                        "name": "resultados",
+                        "persistentVolumeClaim": {
+                            "claimName": "resultados-cpp"
+                        }
+                    },
+                    {
+                        "name": "kube-api-access-z795g",
+                        "projected": {
+                            "defaultMode": 420,
+                            "sources": [
+                                {
+                                    "serviceAccountToken": {
+                                        "expirationSeconds": 3607,
+                                        "path": "token"
+                                    }
+                                },
+                                {
+                                    "configMap": {
+                                        "items": [
+                                            {
+                                                "key": "ca.crt",
+                                                "path": "ca.crt"
+                                            }
+                                        ],
+                                        "name": "kube-root-ca.crt"
+                                    }
+                                },
+                                {
+                                    "downwardAPI": {
+                                        "items": [
+                                            {
+                                                "fieldRef": {
+                                                    "apiVersion": "v1",
+                                                    "fieldPath": "metadata.namespace"
+                                                },
+                                                "path": "namespace"
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "status": {
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-11-10T15:50:11Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodReadyToStartContainers"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-11-10T15:50:09Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-11-10T15:50:11Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-11-10T15:50:11Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "ContainersReady"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-11-10T15:50:09Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "allocatedResources": {
+                            "cpu": "10m",
+                            "memory": "16Mi"
+                        },
+                        "containerID": "containerd://c7fc0e871d9e77bfecac28a6db12f55c02653aebb201fb5e064166f7dcc801d8",
+                        "image": "docker.io/library/etl-distribuido-cpp:local",
+                        "imageID": "sha256:ec0761692eff1dc146af78321bdf61604a8b959e10036d026f9dc7d457b8b7ff",
+                        "lastState": {},
+                        "name": "lector",
+                        "ready": true,
+                        "resources": {
+                            "limits": {
+                                "cpu": "100m",
+                                "memory": "64Mi"
+                            },
+                            "requests": {
+                                "cpu": "10m",
+                                "memory": "16Mi"
+                            }
+                        },
+                        "restartCount": 0,
+                        "started": true,
+                        "state": {
+                            "running": {
+                                "startedAt": "2026-11-10T15:50:10Z"
+                            }
+                        },
+                        "user": {
+                            "linux": {
+                                "gid": 0,
+                                "supplementalGroups": [
+                                    0,
+                                    1000
+                                ],
+                                "uid": 1000
+                            }
+                        },
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/resultados",
+                                "name": "resultados"
+                            },
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-z795g",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            }
+                        ]
+                    }
+                ],
+                "hostIP": "172.17.0.3",
+                "hostIPs": [
+                    {
+                        "ip": "172.17.0.3"
+                    }
+                ],
+                "observedGeneration": 1,
+                "phase": "Running",
+                "podIP": "10.42.0.5",
+                "podIPs": [
+                    {
+                        "ip": "10.42.0.5"
+                    }
+                ],
+                "qosClass": "Burstable",
+                "startTime": "2026-11-10T15:50:09Z"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "annotations": {
+                    "batch.kubernetes.io/job-completion-index": "0"
+                },
+                "creationTimestamp": "2026-11-10T16:01:43Z",
+                "generateName": "etl-cpp-particiones-0-",
+                "generation": 1,
+                "labels": {
+                    "batch.kubernetes.io/controller-uid": "f4d00555-2d41-4869-a1e3-2cd5c0fcc571",
+                    "batch.kubernetes.io/job-completion-index": "0",
+                    "batch.kubernetes.io/job-name": "etl-cpp-particiones",
+                    "controller-uid": "f4d00555-2d41-4869-a1e3-2cd5c0fcc571",
+                    "job-name": "etl-cpp-particiones"
+                },
+                "name": "etl-cpp-particiones-0-n7r26",
+                "namespace": "etl-cpp",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "batch/v1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "Job",
+                        "name": "etl-cpp-particiones",
+                        "uid": "f4d00555-2d41-4869-a1e3-2cd5c0fcc571"
+                    }
+                ],
+                "resourceVersion": "1132",
+                "uid": "5a378d81-29f7-46e9-bdfd-121600e7d59f"
+            },
+            "spec": {
+                "containers": [
+                    {
+                        "args": [
+                            "--input",
+                            "/datos/COVID19MEXICO.csv",
+                            "--output",
+                            "/resultados/parte_$(INDICE).csv",
+                            "--audit",
+                            "/resultados/parte_$(INDICE).json",
+                            "--mode",
+                            "omp",
+                            "--threads",
+                            "2",
+                            "--shard-index",
+                            "$(INDICE)",
+                            "--shard-count",
+                            "2"
+                        ],
+                        "env": [
+                            {
+                                "name": "INDICE",
+                                "valueFrom": {
+                                    "fieldRef": {
+                                        "apiVersion": "v1",
+                                        "fieldPath": "metadata.annotations['batch.kubernetes.io/job-completion-index']"
+                                    }
+                                }
+                            },
+                            {
+                                "name": "JOB_COMPLETION_INDEX",
+                                "valueFrom": {
+                                    "fieldRef": {
+                                        "apiVersion": "v1",
+                                        "fieldPath": "metadata.labels['batch.kubernetes.io/job-completion-index']"
+                                    }
+                                }
+                            }
+                        ],
+                        "image": "etl-distribuido-cpp:local",
+                        "imagePullPolicy": "Never",
+                        "name": "etl",
+                        "resources": {
+                            "limits": {
+                                "cpu": "2",
+                                "memory": "512Mi"
+                            },
+                            "requests": {
+                                "cpu": "1",
+                                "memory": "128Mi"
+                            }
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/resultados",
+                                "name": "resultados"
+                            },
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-ttlxl",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": true,
+                "hostname": "etl-cpp-particiones-0",
+                "nodeName": "fc1c7294426e",
+                "preemptionPolicy": "PreemptLowerPriority",
+                "priority": 0,
+                "restartPolicy": "Never",
+                "schedulerName": "default-scheduler",
+                "securityContext": {
+                    "fsGroup": 1000
+                },
+                "serviceAccount": "default",
+                "serviceAccountName": "default",
+                "terminationGracePeriodSeconds": 30,
+                "tolerations": [
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/not-ready",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/unreachable",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    }
+                ],
+                "volumes": [
+                    {
+                        "name": "resultados",
+                        "persistentVolumeClaim": {
+                            "claimName": "resultados-cpp"
+                        }
+                    },
+                    {
+                        "name": "kube-api-access-ttlxl",
+                        "projected": {
+                            "defaultMode": 420,
+                            "sources": [
+                                {
+                                    "serviceAccountToken": {
+                                        "expirationSeconds": 3607,
+                                        "path": "token"
+                                    }
+                                },
+                                {
+                                    "configMap": {
+                                        "items": [
+                                            {
+                                                "key": "ca.crt",
+                                                "path": "ca.crt"
+                                            }
+                                        ],
+                                        "name": "kube-root-ca.crt"
+                                    }
+                                },
+                                {
+                                    "downwardAPI": {
+                                        "items": [
+                                            {
+                                                "fieldRef": {
+                                                    "apiVersion": "v1",
+                                                    "fieldPath": "metadata.namespace"
+                                                },
+                                                "path": "namespace"
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "status": {
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-11-10T16:01:46Z",
+                        "observedGeneration": 1,
+                        "status": "False",
+                        "type": "PodReadyToStartContainers"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-11-10T16:01:43Z",
+                        "observedGeneration": 1,
+                        "reason": "PodCompleted",
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-11-10T16:01:45Z",
+                        "observedGeneration": 1,
+                        "reason": "PodCompleted",
+                        "status": "False",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-11-10T16:01:45Z",
+                        "observedGeneration": 1,
+                        "reason": "PodCompleted",
+                        "status": "False",
+                        "type": "ContainersReady"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-11-10T16:01:43Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "allocatedResources": {
+                            "cpu": "1",
+                            "memory": "128Mi"
+                        },
+                        "containerID": "containerd://9bd0f261a1e9b351091af2d5cb0cca205be6c83358b64837ccfb61cdb0d31c05",
+                        "image": "docker.io/library/etl-distribuido-cpp:local",
+                        "imageID": "sha256:ec0761692eff1dc146af78321bdf61604a8b959e10036d026f9dc7d457b8b7ff",
+                        "lastState": {},
+                        "name": "etl",
+                        "ready": false,
+                        "resources": {
+                            "limits": {
+                                "cpu": "2",
+                                "memory": "512Mi"
+                            },
+                            "requests": {
+                                "cpu": "1",
+                                "memory": "128Mi"
+                            }
+                        },
+                        "restartCount": 0,
+                        "started": false,
+                        "state": {
+                            "terminated": {
+                                "containerID": "containerd://9bd0f261a1e9b351091af2d5cb0cca205be6c83358b64837ccfb61cdb0d31c05",
+                                "exitCode": 0,
+                                "finishedAt": "2026-11-10T16:01:44Z",
+                                "reason": "Completed",
+                                "startedAt": "2026-11-10T16:01:43Z"
+                            }
+                        },
+                        "user": {
+                            "linux": {
+                                "gid": 0,
+                                "supplementalGroups": [
+                                    0,
+                                    1000
+                                ],
+                                "uid": 1000
+                            }
+                        },
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/resultados",
+                                "name": "resultados"
+                            },
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-ttlxl",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            }
+                        ]
+                    }
+                ],
+                "hostIP": "172.17.0.3",
+                "hostIPs": [
+                    {
+                        "ip": "172.17.0.3"
+                    }
+                ],
+                "observedGeneration": 1,
+                "phase": "Succeeded",
+                "podIP": "10.42.0.24",
+                "podIPs": [
+                    {
+                        "ip": "10.42.0.24"
+                    }
+                ],
+                "qosClass": "Burstable",
+                "startTime": "2026-11-10T16:01:43Z"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "annotations": {
+                    "batch.kubernetes.io/job-completion-index": "1"
+                },
+                "creationTimestamp": "2026-11-10T16:01:43Z",
+                "generateName": "etl-cpp-particiones-1-",
+                "generation": 1,
+                "labels": {
+                    "batch.kubernetes.io/controller-uid": "f4d00555-2d41-4869-a1e3-2cd5c0fcc571",
+                    "batch.kubernetes.io/job-completion-index": "1",
+                    "batch.kubernetes.io/job-name": "etl-cpp-particiones",
+                    "controller-uid": "f4d00555-2d41-4869-a1e3-2cd5c0fcc571",
+                    "job-name": "etl-cpp-particiones"
+                },
+                "name": "etl-cpp-particiones-1-c8gd7",
+                "namespace": "etl-cpp",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "batch/v1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "Job",
+                        "name": "etl-cpp-particiones",
+                        "uid": "f4d00555-2d41-4869-a1e3-2cd5c0fcc571"
+                    }
+                ],
+                "resourceVersion": "1133",
+                "uid": "040544eb-f254-454b-a7ff-4780de58a845"
+            },
+            "spec": {
+                "containers": [
+                    {
+                        "args": [
+                            "--input",
+                            "/datos/COVID19MEXICO.csv",
+                            "--output",
+                            "/resultados/parte_$(INDICE).csv",
+                            "--audit",
+                            "/resultados/parte_$(INDICE).json",
+                            "--mode",
+                            "omp",
+                            "--threads",
+                            "2",
+                            "--shard-index",
+                            "$(INDICE)",
+                            "--shard-count",
+                            "2"
+                        ],
+                        "env": [
+                            {
+                                "name": "INDICE",
+                                "valueFrom": {
+                                    "fieldRef": {
+                                        "apiVersion": "v1",
+                                        "fieldPath": "metadata.annotations['batch.kubernetes.io/job-completion-index']"
+                                    }
+                                }
+                            },
+                            {
+                                "name": "JOB_COMPLETION_INDEX",
+                                "valueFrom": {
+                                    "fieldRef": {
+                                        "apiVersion": "v1",
+                                        "fieldPath": "metadata.labels['batch.kubernetes.io/job-completion-index']"
+                                    }
+                                }
+                            }
+                        ],
+                        "image": "etl-distribuido-cpp:local",
+                        "imagePullPolicy": "Never",
+                        "name": "etl",
+                        "resources": {
+                            "limits": {
+                                "cpu": "2",
+                                "memory": "512Mi"
+                            },
+                            "requests": {
+                                "cpu": "1",
+                                "memory": "128Mi"
+                            }
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/resultados",
+                                "name": "resultados"
+                            },
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-m8lk5",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": true,
+                "hostname": "etl-cpp-particiones-1",
+                "nodeName": "fc1c7294426e",
+                "preemptionPolicy": "PreemptLowerPriority",
+                "priority": 0,
+                "restartPolicy": "Never",
+                "schedulerName": "default-scheduler",
+                "securityContext": {
+                    "fsGroup": 1000
+                },
+                "serviceAccount": "default",
+                "serviceAccountName": "default",
+                "terminationGracePeriodSeconds": 30,
+                "tolerations": [
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/not-ready",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/unreachable",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    }
+                ],
+                "volumes": [
+                    {
+                        "name": "resultados",
+                        "persistentVolumeClaim": {
+                            "claimName": "resultados-cpp"
+                        }
+                    },
+                    {
+                        "name": "kube-api-access-m8lk5",
+                        "projected": {
+                            "defaultMode": 420,
+                            "sources": [
+                                {
+                                    "serviceAccountToken": {
+                                        "expirationSeconds": 3607,
+                                        "path": "token"
+                                    }
+                                },
+                                {
+                                    "configMap": {
+                                        "items": [
+                                            {
+                                                "key": "ca.crt",
+                                                "path": "ca.crt"
+                                            }
+                                        ],
+                                        "name": "kube-root-ca.crt"
+                                    }
+                                },
+                                {
+                                    "downwardAPI": {
+                                        "items": [
+                                            {
+                                                "fieldRef": {
+                                                    "apiVersion": "v1",
+                                                    "fieldPath": "metadata.namespace"
+                                                },
+                                                "path": "namespace"
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "status": {
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-11-10T16:01:46Z",
+                        "observedGeneration": 1,
+                        "status": "False",
+                        "type": "PodReadyToStartContainers"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-11-10T16:01:43Z",
+                        "observedGeneration": 1,
+                        "reason": "PodCompleted",
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-11-10T16:01:45Z",
+                        "observedGeneration": 1,
+                        "reason": "PodCompleted",
+                        "status": "False",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-11-10T16:01:45Z",
+                        "observedGeneration": 1,
+                        "reason": "PodCompleted",
+                        "status": "False",
+                        "type": "ContainersReady"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-11-10T16:01:43Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "allocatedResources": {
+                            "cpu": "1",
+                            "memory": "128Mi"
+                        },
+                        "containerID": "containerd://c0fd0e773f6454a33b2abfbe47cad904e94e18cd323c4ce01d8e4c21b87953e0",
+                        "image": "docker.io/library/etl-distribuido-cpp:local",
+                        "imageID": "sha256:ec0761692eff1dc146af78321bdf61604a8b959e10036d026f9dc7d457b8b7ff",
+                        "lastState": {},
+                        "name": "etl",
+                        "ready": false,
+                        "resources": {
+                            "limits": {
+                                "cpu": "2",
+                                "memory": "512Mi"
+                            },
+                            "requests": {
+                                "cpu": "1",
+                                "memory": "128Mi"
+                            }
+                        },
+                        "restartCount": 0,
+                        "started": false,
+                        "state": {
+                            "terminated": {
+                                "containerID": "containerd://c0fd0e773f6454a33b2abfbe47cad904e94e18cd323c4ce01d8e4c21b87953e0",
+                                "exitCode": 0,
+                                "finishedAt": "2026-11-10T16:01:44Z",
+                                "reason": "Completed",
+                                "startedAt": "2026-11-10T16:01:43Z"
+                            }
+                        },
+                        "user": {
+                            "linux": {
+                                "gid": 0,
+                                "supplementalGroups": [
+                                    0,
+                                    1000
+                                ],
+                                "uid": 1000
+                            }
+                        },
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/resultados",
+                                "name": "resultados"
+                            },
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-m8lk5",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            }
+                        ]
+                    }
+                ],
+                "hostIP": "172.17.0.3",
+                "hostIPs": [
+                    {
+                        "ip": "172.17.0.3"
+                    }
+                ],
+                "observedGeneration": 1,
+                "phase": "Succeeded",
+                "podIP": "10.42.0.25",
+                "podIPs": [
+                    {
+                        "ip": "10.42.0.25"
+                    }
+                ],
+                "qosClass": "Burstable",
+                "startTime": "2026-11-10T16:01:43Z"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "creationTimestamp": "2026-11-10T16:01:47Z",
+                "generateName": "etl-cpp-union-",
+                "generation": 1,
+                "labels": {
+                    "batch.kubernetes.io/controller-uid": "f56cae12-2c62-4a2f-9aff-cb6f5861fbcf",
+                    "batch.kubernetes.io/job-name": "etl-cpp-union",
+                    "controller-uid": "f56cae12-2c62-4a2f-9aff-cb6f5861fbcf",
+                    "job-name": "etl-cpp-union"
+                },
+                "name": "etl-cpp-union-vmlj9",
+                "namespace": "etl-cpp",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "batch/v1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "Job",
+                        "name": "etl-cpp-union",
+                        "uid": "f56cae12-2c62-4a2f-9aff-cb6f5861fbcf"
+                    }
+                ],
+                "resourceVersion": "1154",
+                "uid": "468ad931-30de-4117-ba98-40c19ffdc0d7"
+            },
+            "spec": {
+                "containers": [
+                    {
+                        "args": [
+                            "--merge-dir",
+                            "/resultados",
+                            "--shard-count",
+                            "2",
+                            "--output",
+                            "/resultados/COVID19MEXICO_limpio.csv",
+                            "--audit",
+                            "/resultados/union.json"
+                        ],
+                        "image": "etl-distribuido-cpp:local",
+                        "imagePullPolicy": "Never",
+                        "name": "reunir",
+                        "resources": {
+                            "limits": {
+                                "cpu": "1",
+                                "memory": "512Mi"
+                            },
+                            "requests": {
+                                "cpu": "500m",
+                                "memory": "128Mi"
+                            }
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/resultados",
+                                "name": "resultados"
+                            },
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-hkx4d",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": true,
+                "nodeName": "fc1c7294426e",
+                "preemptionPolicy": "PreemptLowerPriority",
+                "priority": 0,
+                "restartPolicy": "Never",
+                "schedulerName": "default-scheduler",
+                "securityContext": {
+                    "fsGroup": 1000
+                },
+                "serviceAccount": "default",
+                "serviceAccountName": "default",
+                "terminationGracePeriodSeconds": 30,
+                "tolerations": [
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/not-ready",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/unreachable",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    }
+                ],
+                "volumes": [
+                    {
+                        "name": "resultados",
+                        "persistentVolumeClaim": {
+                            "claimName": "resultados-cpp"
+                        }
+                    },
+                    {
+                        "name": "kube-api-access-hkx4d",
+                        "projected": {
+                            "defaultMode": 420,
+                            "sources": [
+                                {
+                                    "serviceAccountToken": {
+                                        "expirationSeconds": 3607,
+                                        "path": "token"
+                                    }
+                                },
+                                {
+                                    "configMap": {
+                                        "items": [
+                                            {
+                                                "key": "ca.crt",
+                                                "path": "ca.crt"
+                                            }
+                                        ],
+                                        "name": "kube-root-ca.crt"
+                                    }
+                                },
+                                {
+                                    "downwardAPI": {
+                                        "items": [
+                                            {
+                                                "fieldRef": {
+                                                    "apiVersion": "v1",
+                                                    "fieldPath": "metadata.namespace"
+                                                },
+                                                "path": "namespace"
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "status": {
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-11-10T16:01:50Z",
+                        "observedGeneration": 1,
+                        "status": "False",
+                        "type": "PodReadyToStartContainers"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-11-10T16:01:47Z",
+                        "observedGeneration": 1,
+                        "reason": "PodCompleted",
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-11-10T16:01:49Z",
+                        "observedGeneration": 1,
+                        "reason": "PodCompleted",
+                        "status": "False",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-11-10T16:01:49Z",
+                        "observedGeneration": 1,
+                        "reason": "PodCompleted",
+                        "status": "False",
+                        "type": "ContainersReady"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-11-10T16:01:47Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "allocatedResources": {
+                            "cpu": "500m",
+                            "memory": "128Mi"
+                        },
+                        "containerID": "containerd://f51fe5320b8cdfd4d5e37f5cb39dd5959821683ca5dac56a1e922bc09cfc302d",
+                        "image": "docker.io/library/etl-distribuido-cpp:local",
+                        "imageID": "sha256:ec0761692eff1dc146af78321bdf61604a8b959e10036d026f9dc7d457b8b7ff",
+                        "lastState": {},
+                        "name": "reunir",
+                        "ready": false,
+                        "resources": {
+                            "limits": {
+                                "cpu": "1",
+                                "memory": "512Mi"
+                            },
+                            "requests": {
+                                "cpu": "500m",
+                                "memory": "128Mi"
+                            }
+                        },
+                        "restartCount": 0,
+                        "started": false,
+                        "state": {
+                            "terminated": {
+                                "containerID": "containerd://f51fe5320b8cdfd4d5e37f5cb39dd5959821683ca5dac56a1e922bc09cfc302d",
+                                "exitCode": 0,
+                                "finishedAt": "2026-11-10T16:01:48Z",
+                                "reason": "Completed",
+                                "startedAt": "2026-11-10T16:01:48Z"
+                            }
+                        },
+                        "user": {
+                            "linux": {
+                                "gid": 0,
+                                "supplementalGroups": [
+                                    0,
+                                    1000
+                                ],
+                                "uid": 1000
+                            }
+                        },
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/resultados",
+                                "name": "resultados"
+                            },
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-hkx4d",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            }
+                        ]
+                    }
+                ],
+                "hostIP": "172.17.0.3",
+                "hostIPs": [
+                    {
+                        "ip": "172.17.0.3"
+                    }
+                ],
+                "observedGeneration": 1,
+                "phase": "Succeeded",
+                "podIP": "10.42.0.26",
+                "podIPs": [
+                    {
+                        "ip": "10.42.0.26"
+                    }
+                ],
+                "qosClass": "Burstable",
+                "startTime": "2026-11-10T16:01:47Z"
+            }
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}

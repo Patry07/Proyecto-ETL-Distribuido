@@ -1,0 +1,269 @@
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "batch/v1",
+            "kind": "Job",
+            "metadata": {
+                "annotations": {
+                    "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"batch/v1\",\"kind\":\"Job\",\"metadata\":{\"annotations\":{},\"labels\":{\"app\":\"etl-cpp\"},\"name\":\"etl-cpp-particiones\",\"namespace\":\"etl-cpp\"},\"spec\":{\"activeDeadlineSeconds\":180,\"backoffLimit\":0,\"completionMode\":\"Indexed\",\"completions\":2,\"parallelism\":2,\"template\":{\"spec\":{\"containers\":[{\"args\":[\"--input\",\"/datos/COVID19MEXICO.csv\",\"--output\",\"/resultados/parte_$(INDICE).csv\",\"--audit\",\"/resultados/parte_$(INDICE).json\",\"--mode\",\"omp\",\"--threads\",\"2\",\"--shard-index\",\"$(INDICE)\",\"--shard-count\",\"2\"],\"env\":[{\"name\":\"INDICE\",\"valueFrom\":{\"fieldRef\":{\"fieldPath\":\"metadata.annotations['batch.kubernetes.io/job-completion-index']\"}}}],\"image\":\"etl-distribuido-cpp:local\",\"imagePullPolicy\":\"Never\",\"name\":\"etl\",\"resources\":{\"limits\":{\"cpu\":\"2\",\"memory\":\"512Mi\"},\"requests\":{\"cpu\":\"1\",\"memory\":\"128Mi\"}},\"volumeMounts\":[{\"mountPath\":\"/resultados\",\"name\":\"resultados\"}]}],\"restartPolicy\":\"Never\",\"securityContext\":{\"fsGroup\":1000},\"volumes\":[{\"name\":\"resultados\",\"persistentVolumeClaim\":{\"claimName\":\"resultados-cpp\"}}]}}}}\n"
+                },
+                "creationTimestamp": "2026-11-10T15:52:40Z",
+                "generation": 1,
+                "labels": {
+                    "app": "etl-cpp"
+                },
+                "name": "etl-cpp-particiones",
+                "namespace": "etl-cpp",
+                "resourceVersion": "689",
+                "uid": "6aa8de50-6845-4983-b4d0-44284dbca350"
+            },
+            "spec": {
+                "activeDeadlineSeconds": 180,
+                "backoffLimit": 0,
+                "completionMode": "Indexed",
+                "completions": 2,
+                "manualSelector": false,
+                "parallelism": 2,
+                "podReplacementPolicy": "TerminatingOrFailed",
+                "selector": {
+                    "matchLabels": {
+                        "batch.kubernetes.io/controller-uid": "6aa8de50-6845-4983-b4d0-44284dbca350"
+                    }
+                },
+                "suspend": false,
+                "template": {
+                    "metadata": {
+                        "labels": {
+                            "batch.kubernetes.io/controller-uid": "6aa8de50-6845-4983-b4d0-44284dbca350",
+                            "batch.kubernetes.io/job-name": "etl-cpp-particiones",
+                            "controller-uid": "6aa8de50-6845-4983-b4d0-44284dbca350",
+                            "job-name": "etl-cpp-particiones"
+                        }
+                    },
+                    "spec": {
+                        "containers": [
+                            {
+                                "args": [
+                                    "--input",
+                                    "/datos/COVID19MEXICO.csv",
+                                    "--output",
+                                    "/resultados/parte_$(INDICE).csv",
+                                    "--audit",
+                                    "/resultados/parte_$(INDICE).json",
+                                    "--mode",
+                                    "omp",
+                                    "--threads",
+                                    "2",
+                                    "--shard-index",
+                                    "$(INDICE)",
+                                    "--shard-count",
+                                    "2"
+                                ],
+                                "env": [
+                                    {
+                                        "name": "INDICE",
+                                        "valueFrom": {
+                                            "fieldRef": {
+                                                "apiVersion": "v1",
+                                                "fieldPath": "metadata.annotations['batch.kubernetes.io/job-completion-index']"
+                                            }
+                                        }
+                                    }
+                                ],
+                                "image": "etl-distribuido-cpp:local",
+                                "imagePullPolicy": "Never",
+                                "name": "etl",
+                                "resources": {
+                                    "limits": {
+                                        "cpu": "2",
+                                        "memory": "512Mi"
+                                    },
+                                    "requests": {
+                                        "cpu": "1",
+                                        "memory": "128Mi"
+                                    }
+                                },
+                                "terminationMessagePath": "/dev/termination-log",
+                                "terminationMessagePolicy": "File",
+                                "volumeMounts": [
+                                    {
+                                        "mountPath": "/resultados",
+                                        "name": "resultados"
+                                    }
+                                ]
+                            }
+                        ],
+                        "dnsPolicy": "ClusterFirst",
+                        "restartPolicy": "Never",
+                        "schedulerName": "default-scheduler",
+                        "securityContext": {
+                            "fsGroup": 1000
+                        },
+                        "terminationGracePeriodSeconds": 30,
+                        "volumes": [
+                            {
+                                "name": "resultados",
+                                "persistentVolumeClaim": {
+                                    "claimName": "resultados-cpp"
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            "status": {
+                "completedIndexes": "0,1",
+                "completionTime": "2026-11-10T15:52:45Z",
+                "conditions": [
+                    {
+                        "lastProbeTime": "2026-11-10T15:52:45Z",
+                        "lastTransitionTime": "2026-11-10T15:52:45Z",
+                        "message": "Reached expected number of succeeded pods",
+                        "reason": "CompletionsReached",
+                        "status": "True",
+                        "type": "SuccessCriteriaMet"
+                    },
+                    {
+                        "lastProbeTime": "2026-11-10T15:52:45Z",
+                        "lastTransitionTime": "2026-11-10T15:52:45Z",
+                        "message": "Reached expected number of succeeded pods",
+                        "reason": "CompletionsReached",
+                        "status": "True",
+                        "type": "Complete"
+                    }
+                ],
+                "ready": 0,
+                "startTime": "2026-11-10T15:52:40Z",
+                "succeeded": 2,
+                "terminating": 0,
+                "uncountedTerminatedPods": {}
+            }
+        },
+        {
+            "apiVersion": "batch/v1",
+            "kind": "Job",
+            "metadata": {
+                "annotations": {
+                    "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"batch/v1\",\"kind\":\"Job\",\"metadata\":{\"annotations\":{},\"labels\":{\"app\":\"etl-cpp\"},\"name\":\"etl-cpp-union\",\"namespace\":\"etl-cpp\"},\"spec\":{\"activeDeadlineSeconds\":120,\"backoffLimit\":0,\"template\":{\"spec\":{\"containers\":[{\"args\":[\"--merge-dir\",\"/resultados\",\"--shard-count\",\"2\",\"--output\",\"/resultados/COVID19MEXICO_limpio.csv\",\"--audit\",\"/resultados/union.json\"],\"image\":\"etl-distribuido-cpp:local\",\"imagePullPolicy\":\"Never\",\"name\":\"reunir\",\"resources\":{\"limits\":{\"cpu\":\"1\",\"memory\":\"512Mi\"},\"requests\":{\"cpu\":\"500m\",\"memory\":\"128Mi\"}},\"volumeMounts\":[{\"mountPath\":\"/resultados\",\"name\":\"resultados\"}]}],\"restartPolicy\":\"Never\",\"securityContext\":{\"fsGroup\":1000},\"volumes\":[{\"name\":\"resultados\",\"persistentVolumeClaim\":{\"claimName\":\"resultados-cpp\"}}]}}}}\n"
+                },
+                "creationTimestamp": "2026-11-10T15:52:45Z",
+                "generation": 1,
+                "labels": {
+                    "app": "etl-cpp"
+                },
+                "name": "etl-cpp-union",
+                "namespace": "etl-cpp",
+                "resourceVersion": "708",
+                "uid": "c2af1822-4d9b-491a-b1dd-444c11a04a10"
+            },
+            "spec": {
+                "activeDeadlineSeconds": 120,
+                "backoffLimit": 0,
+                "completionMode": "NonIndexed",
+                "completions": 1,
+                "manualSelector": false,
+                "parallelism": 1,
+                "podReplacementPolicy": "TerminatingOrFailed",
+                "selector": {
+                    "matchLabels": {
+                        "batch.kubernetes.io/controller-uid": "c2af1822-4d9b-491a-b1dd-444c11a04a10"
+                    }
+                },
+                "suspend": false,
+                "template": {
+                    "metadata": {
+                        "labels": {
+                            "batch.kubernetes.io/controller-uid": "c2af1822-4d9b-491a-b1dd-444c11a04a10",
+                            "batch.kubernetes.io/job-name": "etl-cpp-union",
+                            "controller-uid": "c2af1822-4d9b-491a-b1dd-444c11a04a10",
+                            "job-name": "etl-cpp-union"
+                        }
+                    },
+                    "spec": {
+                        "containers": [
+                            {
+                                "args": [
+                                    "--merge-dir",
+                                    "/resultados",
+                                    "--shard-count",
+                                    "2",
+                                    "--output",
+                                    "/resultados/COVID19MEXICO_limpio.csv",
+                                    "--audit",
+                                    "/resultados/union.json"
+                                ],
+                                "image": "etl-distribuido-cpp:local",
+                                "imagePullPolicy": "Never",
+                                "name": "reunir",
+                                "resources": {
+                                    "limits": {
+                                        "cpu": "1",
+                                        "memory": "512Mi"
+                                    },
+                                    "requests": {
+                                        "cpu": "500m",
+                                        "memory": "128Mi"
+                                    }
+                                },
+                                "terminationMessagePath": "/dev/termination-log",
+                                "terminationMessagePolicy": "File",
+                                "volumeMounts": [
+                                    {
+                                        "mountPath": "/resultados",
+                                        "name": "resultados"
+                                    }
+                                ]
+                            }
+                        ],
+                        "dnsPolicy": "ClusterFirst",
+                        "restartPolicy": "Never",
+                        "schedulerName": "default-scheduler",
+                        "securityContext": {
+                            "fsGroup": 1000
+                        },
+                        "terminationGracePeriodSeconds": 30,
+                        "volumes": [
+                            {
+                                "name": "resultados",
+                                "persistentVolumeClaim": {
+                                    "claimName": "resultados-cpp"
+                                }
+                            }
+                        ]
+                    }
+                }
+            },
+            "status": {
+                "completionTime": "2026-11-10T15:52:48Z",
+                "conditions": [
+                    {
+                        "lastProbeTime": "2026-11-10T15:52:48Z",
+                        "lastTransitionTime": "2026-11-10T15:52:48Z",
+                        "message": "Reached expected number of succeeded pods",
+                        "reason": "CompletionsReached",
+                        "status": "True",
+                        "type": "SuccessCriteriaMet"
+                    },
+                    {
+                        "lastProbeTime": "2026-11-10T15:52:48Z",
+                        "lastTransitionTime": "2026-11-10T15:52:48Z",
+                        "message": "Reached expected number of succeeded pods",
+                        "reason": "CompletionsReached",
+                        "status": "True",
+                        "type": "Complete"
+                    }
+                ],
+                "ready": 0,
+                "startTime": "2026-11-10T15:52:45Z",
+                "succeeded": 1,
+                "terminating": 0,
+                "uncountedTerminatedPods": {}
+            }
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}

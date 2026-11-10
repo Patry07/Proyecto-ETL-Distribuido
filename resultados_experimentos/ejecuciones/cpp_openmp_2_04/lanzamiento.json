@@ -1,0 +1,10 @@
+{
+  "configuracion": "cpp_openmp_2",
+  "modo": "omp",
+  "hilos": 2,
+  "repeticion": 4,
+  "pared_segundos": 1.020441759,
+  "etapas_pared_segundos": [],
+  "semilla_orden": 20261114,
+  "cronometro": "Tiempo de pared del proceso CLI; Kubernetes suma apply/wait de trabajadores y unión, sin pausas entre llamadas."
+}

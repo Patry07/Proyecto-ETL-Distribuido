@@ -1,0 +1,45 @@
+{
+  "fecha_utc": "2026-11-10T16:02:23.275715+00:00",
+  "python_validacion": "3.14.4",
+  "pandas_validacion": "3.0.6",
+  "numpy_validacion": "2.5.4",
+  "dataset_sha256": "ca65e96d26e1e7cb58b0b5ec1c642fbcb24926684077cbee5cf2864251ce9728",
+  "fuente_cpp_sha256": "f3d38b6ab205923995a387357b61762183355ac6ab713cbc7e4a64e67a759b74",
+  "binario_sha256": "af64e6f070fbe4478baf17813ce51723e3342cd7489272a2438b0f097035fc2a",
+  "cpu_modelo": "11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz",
+  "compilacion": "g++ 13.3.0; -std=c++17 -O3 -Wall -Wextra -Wpedantic -fopenmp",
+  "binario_comun": "Mismo ejecutable compilado en la imagen hpc-openmp y copiado a Workbench. Docker y K3s usan la misma imagen ETL.",
+  "repeticiones": 5,
+  "calentamientos_excluidos_por_configuracion": 1,
+  "orden": "Fisher-Yates con LCG (1664525*x+1013904223 mod 2^32), semilla 20261110+ronda.",
+  "recursos": "Workbench y Docker individual: cuota 4 CPU; Compose: 2 contenedores x 2 CPU; K3s: cuota 4 CPU compartida entre control plane y dos Pods. 8 hilos sobre cuota 4 es sobresuscripción.",
+  "temporizadores": "steady_clock en C++: lectura/inferencia, preparación global, filas, escritura y total. Pared externa del proceso CLI; en K3s suma apply/wait de particiones y unión. Recuperación y validación fuera de tiempos. Construcción, pull, importación y arranque del clúster excluidos.",
+  "almacenamiento": "Workbench: /tmp del contenedor; Docker/Compose: bind mount; K3s: PVC local-path. Caché del SO sin vaciar. close sin fsync: no es una medición de persistencia física.",
+  "alcance": "C++ secuencial/OpenMP, Compose con particiones por ID, Kubernetes Indexed Job con dos Pods en un nodo local. Cada trabajador lee el CSV completo; la unión C++ restaura orden por índices originales.",
+  "validacion": "Contenido, columnas, orden y nulos frente a la función original del notebook 01; int/float equivalentes al recargar CSV. Además, SHA-256 idéntico entre todas las salidas C++.",
+  "referencias": [
+    "https://www.openmp.org/spec-html/5.2/openmpse66.html",
+    "https://gcc.gnu.org/projects/gomp/",
+    "https://kubernetes.io/docs/concepts/workloads/controllers/job/",
+    "https://cvw.cac.cornell.edu/parallel/efficiency/amdahls-law"
+  ],
+  "workbench": {
+    "cpu_quota": 4000000000,
+    "memory": 8589934592,
+    "image": "dev-workbench-workbench"
+  },
+  "kubernetes": "v1.34.13+k3s1",
+  "docker": "29.1.3",
+  "imagen": "sha256:760f8be71bfcbc420d27f46ecfce3bf577a90f48b09a5ccb7f4dce49be7d454a",
+  "compilador": "g++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0",
+  "analisis_workbench": {
+    "pandas": "3.0.5",
+    "numpy": "2.5.2",
+    "matplotlib": "3.11.1",
+    "nbformat": "5.11.1",
+    "nbclient": "0.11.0",
+    "nbconvert": "7.17.1",
+    "ipykernel": "7.3.0"
+  },
+  "matplotlib_figuras": "3.11.2"
+}

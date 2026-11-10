@@ -1,0 +1,23 @@
+ Container etl-cpp-experimento-parte1-1 Creating 
+ Container etl-cpp-experimento-parte0-1 Creating 
+ Container etl-cpp-experimento-parte0-1 Created 
+ Container etl-cpp-experimento-parte1-1 Created 
+ Container etl-cpp-experimento-reunir-1 Creating 
+ Container etl-cpp-experimento-reunir-1 Created 
+Attaching to parte0-1, parte1-1, reunir-1
+ Container etl-cpp-experimento-parte0-1 Starting 
+ Container etl-cpp-experimento-parte1-1 Starting 
+ Container etl-cpp-experimento-parte0-1 Started 
+ Container etl-cpp-experimento-parte1-1 Started 
+ Container etl-cpp-experimento-parte1-1 Waiting 
+ Container etl-cpp-experimento-parte0-1 Waiting 
+parte0-1  | C++ omp | hilos=2 | partición=0/2 | filas=54118 | ETL=0.140295 s | total=1.00017 s
+parte1-1  | C++ omp | hilos=2 | partición=1/2 | filas=54615 | ETL=0.145067 s | total=1.03062 s
+[Kparte0-1 exited with code 0
+[Kparte1-1 exited with code 0
+ Container etl-cpp-experimento-parte1-1 Exited 
+ Container etl-cpp-experimento-parte0-1 Exited 
+ Container etl-cpp-experimento-reunir-1 Starting 
+ Container etl-cpp-experimento-reunir-1 Started 
+reunir-1  | Particiones reunidas: 2; filas: 108733
+[Kreunir-1 exited with code 0

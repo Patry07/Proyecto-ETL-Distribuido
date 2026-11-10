@@ -1,0 +1,10 @@
+{
+  "configuracion": "docker_openmp_4",
+  "modo": "docker",
+  "hilos": 4,
+  "repeticion": 3,
+  "pared_segundos": 1.132686143,
+  "etapas_pared_segundos": [],
+  "semilla_orden": 20261113,
+  "cronometro": "Tiempo de pared del proceso CLI; Kubernetes suma apply/wait de trabajadores y unión, sin pausas entre llamadas."
+}

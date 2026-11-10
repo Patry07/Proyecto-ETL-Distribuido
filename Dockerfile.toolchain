@@ -1,0 +1,5 @@
+# Alternativa para un equipo que todavía no tenga la imagen hpc-openmp local.
+FROM ubuntu:24.04
+RUN apt-get update \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends g++ make libgomp1 \
+    && rm -rf /var/lib/apt/lists/*
