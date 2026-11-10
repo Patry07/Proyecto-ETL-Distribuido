@@ -1,0 +1,21 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: etl-covid-job
+spec:
+  backoffLimit: 0
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: etl-paralelo
+          image: etl-covid-paralelo:latest
+          imagePullPolicy: Never
+          command: ["python", "etl_paralelo.py"]
+          volumeMounts:
+            - name: resultados
+              mountPath: /app/resultados
+      volumes:
+        - name: resultados
+          persistentVolumeClaim:
+            claimName: etl-resultados-pvc
