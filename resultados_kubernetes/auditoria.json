@@ -1,9 +1,0 @@
-{
-    "filas_entrada": 108733,
-    "duplicados_exactos_eliminados": 0,
-    "duplicados_id_eliminados": 0,
-    "edades_invalidas_convertidas_a_nulo": 0,
-    "filas_salida": 108733,
-    "procesos_utilizados": 4,
-    "tiempo_segundos": 0.49747971200031316
-}
