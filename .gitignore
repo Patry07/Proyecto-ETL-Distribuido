@@ -11,5 +11,5 @@ __pycache__/
 # Datos originales y resultados generados
 datos/
 resultados/
-resultados_kubernetes
-kubectl
+resultados_kubernetes/
+kubectl/
